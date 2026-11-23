@@ -1,0 +1,559 @@
+
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project TINIG - Tulong at Gabay</title>
+<style>
+:root {
+  --blue:#082c60;
+  --yellow:#ffc928;
+  --light:#eef5ff;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(140deg,#e7f2ff,#fff9dd);
+  color:#18324f;
+}
+header {
+  background:var(--blue);
+  color:white;
+  text-align:center;
+  padding:26px 15px;
+}
+header h1 { margin:8px 0; font-size:34px; }
+header p { margin:6px; }
+.subtitle { color:var(--yellow); font-weight:bold; }
+main {
+  max-width:760px;
+  margin:25px auto;
+  padding:0 14px 30px;
+}
+.card {
+  background:white;
+  padding:28px;
+  border-radius:18px;
+  box-shadow:0 5px 24px #153b6620;
+}
+h2 { color:var(--blue); margin-top:0; }
+label { display:block; font-weight:bold; margin:16px 0 7px; }
+input,textarea,select {
+  width:100%;
+  padding:13px;
+  border:1px solid #b9c8d9;
+  border-radius:9px;
+  font:inherit;
+}
+textarea { min-height:145px; resize:vertical; }
+button {
+  background:var(--blue);
+  color:white;
+  border:0;
+  border-radius:10px;
+  padding:13px 20px;
+  font-size:16px;
+  cursor:pointer;
+}
+button:disabled { opacity:.55; cursor:wait; }
+button.secondary { background:#e5ecf5; color:var(--blue); }
+.actions { display:flex; gap:10px; margin-top:23px; flex-wrap:wrap; }
+.step { display:none; }
+.step.active { display:block; }
+.progress {
+  display:flex;
+  gap:5px;
+  margin-bottom:18px;
+}
+.progress span {
+  height:7px;
+  background:#c9d6e5;
+  flex:1;
+  border-radius:5px;
+}
+.progress span.done { background:var(--yellow); }
+.option {
+  display:block;
+  padding:15px;
+  border:1px solid #ccd8e6;
+  border-radius:10px;
+  margin:10px 0;
+  cursor:pointer;
+}
+.option input { width:auto; margin-right:10px; }
+.notice {
+  background:#fff7d9;
+  padding:15px;
+  border-left:4px solid #e7ad00;
+  border-radius:8px;
+  margin:16px 0;
+  line-height:1.55;
+}
+.help {
+  background:#eaf5ff;
+  padding:16px;
+  border-radius:10px;
+  line-height:1.65;
+}
+.privacy { display:flex; align-items:flex-start; gap:10px; }
+.privacy input { width:auto; margin-top:4px; }
+.privacy label { margin:0; font-weight:normal; }
+.quote {
+  text-align:center;
+  font-style:italic;
+  color:#34577c;
+  margin:20px 0;
+}
+.small { font-size:13px; color:#53667a; line-height:1.6; }
+.success { color:#087443; font-weight:bold; }
+footer {
+  text-align:center;
+  font-size:12px;
+  padding:20px;
+  color:#63758a;
+}
+@media(max-width:600px) {
+  .card { padding:20px; }
+  header h1 { font-size:28px; }
+  button { flex:1; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <p>DASMARINAS EAST INTEGRATED HIGH SCHOOL</p>
+  <h1>PROJECT TINIG</h1>
+  <p class="subtitle">Tulong at Gabay</p>
+  <p>Makinig • Sumuporta • Protektahan • Gabayan</p>
+  <p>May handang makinig sa iyong tinig.</p>
+</header>
+
+<main>
+<div class="progress" id="progress">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<div class="card">
+
+<!-- STEP 1 -->
+<section class="step active" id="step1">
+<h2>1. Kilalanin ang Mag-aaral</h2>
+<p>Maligayang pagdating sa Project TINIG.</p>
+
+<div class="notice">
+Ang LRN at birthday ay kinukuha para sa paunang
+student information lamang. Hindi nito awtomatikong
+napapatunayan ang iyong enrollment o pagkakakilanlan.
+</div>
+
+<label for="lrn">Learner Reference Number (LRN)</label>
+<input id="lrn" maxlength="12" inputmode="numeric"
+placeholder="12-digit LRN" autocomplete="off">
+
+<label for="birthday">Petsa ng Kapanganakan</label>
+<input id="birthday" type="date">
+
+<div class="actions">
+<button onclick="nextStep(1)">Magpatuloy</button>
+</div>
+</section>
+
+<!-- STEP 2 -->
+<section class="step" id="step2">
+<h2>2. Ano ang Iyong Concern?</h2>
+<p>Piliin ang tanggapang makatutulong sa iyo.</p>
+
+<label class="option">
+<input type="radio" name="office" value="Guidance"
+onchange="showCategories()">
+Guidance Office – Emosyonal, personal, at pag-aaral
+</label>
+
+<label class="option">
+<input type="radio" name="office" value="LFO"
+onchange="showCategories()">
+Learner Formation Office (LFO) – Kaligtasan,
+disiplina, at proteksyon
+</label>
+
+<label for="category">Uri ng Concern</label>
+<select id="category">
+<option value="">Pumili muna ng tanggapan</option>
+</select>
+
+<div class="actions">
+<button class="secondary" onclick="showStep(1)">Bumalik</button>
+<button onclick="nextStep(2)">Magpatuloy</button>
+</div>
+</section>
+
+<!-- STEP 3 -->
+<section class="step" id="step3">
+<h2>3. Ibahagi ang Iyong Saloobin</h2>
+<p>Handa kaming makinig. Ikuwento ang iyong concern
+sa paraang komportable ka.</p>
+
+<label for="concern">Ano ang nais mong sabihin?</label>
+<textarea id="concern" maxlength="5000"
+placeholder="Maaari mong ikuwento ang iyong nararanasan..."></textarea>
+
+<label for="studentName">Pangalan (Opsyonal)</label>
+<input id="studentName" maxlength="150"
+placeholder="Maaaring iwanang blangko">
+
+<label for="section">Baitang at Seksyon (Opsyonal)</label>
+<input id="section" maxlength="100"
+placeholder="Halimbawa: Grade 9 - Yakal">
+
+<label class="option">
+<input type="checkbox" id="urgent">
+Kailangan ko ng agarang tulong o natatakot ako
+para sa aking kaligtasan.
+</label>
+
+<div class="notice">
+<strong>Kung may agarang panganib:</strong>
+Lumapit agad sa pinakamalapit na guro, Guidance
+personnel, LFO, school administrator, o ibang
+pinagkakatiwalaang nakatatanda. Huwag hintayin
+ang online submission.
+</div>
+
+<div class="help">
+<strong>Data Privacy Notice</strong>
+<p class="small">
+Ang impormasyong ibibigay mo ay ilalagay sa
+Google Spreadsheet ng paaralan para sa pagrepaso
+ng mga awtorisadong school personnel.
+Kasama rito ang iyong concern, napiling tanggapan,
+huling apat na digit ng LRN, at anumang opsyonal
+na impormasyong ibinigay mo.
+Hindi ise-save ang iyong birthday.
+</p>
+<p class="small">
+Hindi ito ganap na anonymous. Ang mga detalye
+ng concern ay maaaring makakilala sa iyo.
+Maaaring ibahagi ang impormasyon sa nararapat
+na personnel kung kinakailangan para sa iyong
+kaligtasan, proteksyon, o ayon sa batas.
+</p>
+</div>
+
+<div class="privacy">
+<input type="checkbox" id="consent">
+<label for="consent">
+Nabasa at naunawaan ko ang Data Privacy Notice
+at nais kong isumite ang aking concern.
+</label>
+</div>
+
+<div class="actions">
+<button class="secondary" onclick="showStep(2)">Bumalik</button>
+<button onclick="nextStep(3)">Tingnan ang Gabay</button>
+</div>
+</section>
+
+<!-- STEP 4 -->
+<section class="step" id="step4">
+<h2>4. Gabay Para sa Iyo</h2>
+<p id="officeText"></p>
+
+<div class="help" id="advice"></div>
+
+<p class="quote" id="quote"></p>
+
+<div class="notice">
+<strong>Inirerekomendang pagbisita:</strong>
+<p id="scheduleText"></p>
+<p class="small">
+Ang oras na ito ay pansamantalang mungkahi
+lamang. Hindi pa ito kumpirmadong appointment.
+</p>
+</div>
+
+<p class="small">
+Ang mensaheng ito ay awtomatikong payo batay
+sa napiling concern. Hindi ito live AI,
+professional counseling, o emergency response.
+</p>
+
+<div class="actions">
+<button class="secondary" onclick="showStep(3)">Bumalik</button>
+<button id="submitBtn" onclick="submitReport()">
+Isumite ang Concern
+</button>
+</div>
+<p id="submitStatus" role="status" aria-live="polite"></p>
+</section>
+
+<!-- STEP 5 -->
+<section class="step" id="step5">
+<h2>5. Salamat sa Pagtitiwala!</h2>
+<p class="success">Matagumpay na naitala ang iyong concern.</p>
+
+<div class="help">
+<p><strong>Case Reference:</strong>
+<span id="caseId"></span></p>
+<p>Itago ang iyong case reference bilang patunay
+ng iyong submission.</p>
+</div>
+
+<p>Salamat sa iyong lakas ng loob na magsalita.
+Mahalaga ang iyong tinig at may mga taong handang
+makinig at tumulong sa iyo.</p>
+
+<h3>Oras ng Tanggapan</h3>
+<div class="help">
+<strong>Guidance Office</strong>
+<p>Lunes hanggang Biyernes<br>
+8:00 AM – 4:00 PM (Sample schedule)</p>
+<strong>Learner Formation Office (LFO)</strong>
+<p>Lunes hanggang Biyernes<br>
+8:00 AM – 4:00 PM (Sample schedule)</p>
+</div>
+
+<div class="notice">
+Ang pag-submit ay hindi nangangahulugang nabasa
+na ng Guidance o LFO ang iyong concern.
+Kung urgent, personal na humingi ng tulong ngayon.
+</div>
+
+<p class="quote">
+"Ang iyong tinig ay mahalaga. Hindi mo kailangang
+harapin ang lahat nang mag-isa."
+</p>
+
+<div class="actions">
+<button onclick="restart()">Bumalik sa Simula</button>
+</div>
+</section>
+
+</div>
+</main>
+
+<footer>
+Project TINIG | Dasmarinas East Integrated High School<br>
+Student Support and Learner Protection
+</footer>
+
+<script>
+let currentStep = 1;
+let submitting = false;
+
+const categories = {
+ Guidance: [
+  'Pag-aalala, stress, o matinding lungkot',
+  'Problema sa pamilya',
+  'Problema sa kaibigan o kaklase',
+  'Hirap sa pag-aaral o academic pressure',
+  'Pagkawala ng tiwala sa sarili',
+  'Pangangailangan ng emotional support',
+  'Iba pang personal na concern'
+ ],
+ LFO: [
+  'Pambu-bully o pananakot',
+  'Pananakit o karahasan',
+  'Banta sa kaligtasan sa paaralan',
+  'Hindi ligtas na asal o pangyayari',
+  'Cyberbullying o online harassment',
+  'Pananakit o pang-aabusong sekswal',
+  'Paglabag sa school rules',
+  'Iba pang learner protection concern'
+ ]
+};
+
+function showStep(number) {
+  currentStep = number;
+  document.querySelectorAll('.step').forEach(el =>
+    el.classList.remove('active'));
+  document.getElementById('step' + number)
+    .classList.add('active');
+
+  document.querySelectorAll('#progress span')
+    .forEach((el, i) =>
+      el.classList.toggle('done', i < number));
+
+  window.scrollTo(0, 0);
+}
+
+function getOffice() {
+  return document.querySelector(
+    'input[name="office"]:checked')?.value || '';
+}
+
+function showCategories() {
+  const office = getOffice();
+  const select = document.getElementById('category');
+  select.replaceChildren(new Option('Pumili ng concern', ''));
+
+  (categories[office] || []).forEach(item =>
+    select.add(new Option(item, item)));
+}
+
+function nextStep(step) {
+  if (step === 1) {
+    const lrn = document.getElementById('lrn').value.trim();
+    const birthday = document.getElementById('birthday').value;
+
+    if (!/^\d{12}$/.test(lrn)) {
+      alert('Maglagay ng wastong 12-digit LRN.');
+      return;
+    }
+    if (!birthday || birthday > new Date().toISOString().slice(0,10)) {
+      alert('Maglagay ng wastong birthday.');
+      return;
+    }
+    showStep(2);
+  }
+
+  if (step === 2) {
+    if (!getOffice() || !document.getElementById('category').value) {
+      alert('Pumili ng tanggapan at concern.');
+      return;
+    }
+    showStep(3);
+  }
+
+  if (step === 3) {
+    if (document.getElementById('concern').value.trim().length < 10) {
+      alert('Pakilagyan ng kahit 10 characters ang concern.');
+      return;
+    }
+    if (!document.getElementById('consent').checked) {
+      alert('Basahin at kilalanin muna ang Privacy Notice.');
+      return;
+    }
+    prepareAdvice();
+    showStep(4);
+  }
+}
+
+function prepareAdvice() {
+  const office = getOffice();
+  const category = document.getElementById('category').value;
+  const urgent = document.getElementById('urgent').checked;
+  const advice = document.getElementById('advice');
+
+  document.getElementById('officeText').textContent =
+    'Napili mong tanggapan: ' + office;
+
+  let message =
+    'Salamat sa pagbabahagi. Mahalaga ang iyong nararamdaman. ' +
+    'Maaari kang makipag-usap sa isang pinagkakatiwalaang ' +
+    'kapamilya, nakatatandang kaibigan, guro, Guidance ' +
+    'personnel, o LFO personnel.';
+
+  if (/stress|lungkot|emotional|tiwala/.test(category.toLowerCase())) {
+    message =
+      'Mahalaga ang iyong kalusugang emosyonal. ' +
+      'Subukang magpahinga at kausapin ang isang ' +
+      'pinagkakatiwalaang nakatatanda. Maaari kang ' +
+      'lumapit sa Guidance Office para sa suporta.';
+  }
+
+  if (/bully|pananakot|pananakit|karahasan|banta|pang-aabuso|harassment/i
+      .test(category)) {
+    message =
+      'Hindi dapat balewalain ang iyong kaligtasan. ' +
+      'Lumapit sa ligtas na lugar at ipaalam ang nangyari ' +
+      'sa guro, LFO, Guidance personnel, o school head. ' +
+      'Huwag harapin nang mag-isa ang taong nananakot sa iyo.';
+  }
+
+  if (urgent) {
+    message =
+      'Kung ikaw ay nasa panganib ngayon, huwag nang ' +
+      'maghintay ng schedule. Agad na lumapit sa ' +
+      'pinakamalapit na pinagkakatiwalaang nakatatanda ' +
+      'o school personnel. Kung may agarang emergency, ' +
+      'tumawag sa 911 sa Pilipinas.';
+  }
+
+  advice.textContent = message;
+
+  const quotes = [
+    'Ang paghingi ng tulong ay tanda ng tapang.',
+    'May halaga ang iyong tinig at nararamdaman.',
+    'Hindi mo kailangang harapin ang lahat nang mag-isa.',
+    'May pag-asa, may makikinig, at may handang tumulong.'
+  ];
+  document.getElementById('quote').textContent =
+    '"' + quotes[Math.floor(Math.random() * quotes.length)] + '"';
+
+  document.getElementById('scheduleText').textContent =
+    urgent
+    ? 'Kung may agarang panganib, humingi agad ng tulong. ' +
+      'Huwag hintayin ang office hours.'
+    : office + ': Lunes hanggang Biyernes, ' +
+      '8:00 AM – 4:00 PM (sample hours; kumpirmahin sa paaralan).';
+}
+
+function submitReport() {
+  if (submitting) return;
+
+  if (!window.google || !google.script || !google.script.run) {
+    alert('Buksan ang website gamit ang deployed Apps Script URL.');
+    return;
+  }
+
+  const data = {
+    lrn: document.getElementById('lrn').value.trim(),
+    birthday: document.getElementById('birthday').value,
+    office: getOffice(),
+    category: document.getElementById('category').value,
+    concern: document.getElementById('concern').value.trim(),
+    name: document.getElementById('studentName').value.trim(),
+    section: document.getElementById('section').value.trim(),
+    urgent: document.getElementById('urgent').checked,
+    consent: document.getElementById('consent').checked
+  };
+
+  submitting = true;
+  const btn = document.getElementById('submitBtn');
+  const status = document.getElementById('submitStatus');
+  btn.disabled = true;
+  status.textContent = 'Isinusumite ang iyong concern...';
+
+  google.script.run
+    .withSuccessHandler(result => {
+      submitting = false;
+      btn.disabled = false;
+
+      if (result && result.success) {
+        document.getElementById('caseId').textContent = result.caseId;
+        status.textContent = '';
+        showStep(5);
+      } else {
+        status.textContent = 'Hindi nakumpirma ang submission.';
+      }
+    })
+    .withFailureHandler(error => {
+      submitting = false;
+      btn.disabled = false;
+      status.textContent =
+        'Hindi naisumite. Pakisubukan muli o lumapit sa opisina. ' +
+        (error?.message || '');
+    })
+    .submitConcern(data);
+}
+
+function restart() {
+  document.querySelectorAll('input, textarea').forEach(el => {
+    if (el.type === 'checkbox' || el.type === 'radio') {
+      el.checked = false;
+    } else {
+      el.value = '';
+    }
+  });
+  showCategories();
+  document.getElementById('submitStatus').textContent = '';
+  showStep(1);
+}
+
+showStep(1);
+</script>
+</body>
+</html>
