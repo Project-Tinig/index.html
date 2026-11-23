@@ -3,443 +3,140 @@
 <html lang="fil">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#082c60">
-
 <title>Project TINIG | Tulong at Gabay</title>
-
 <style>
-:root {
-  --navy: #082c60;
-  --blue: #14539b;
-  --yellow: #ffcc28;
-  --text: #173653;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#102f58;
+  background:linear-gradient(135deg,#e9f4ff,#fff8df);
 }
-
-* {
-  box-sizing: border-box;
+header{background:#082c60}
+.banner{
+  display:block;
+  width:100%;
+  max-width:1600px;
+  height:auto;
+  margin:auto;
 }
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(
-    135deg,
-    #e9f4ff,
-    #f6faff,
-    #fff8df
-  );
-  color: var(--text);
-  min-height: 100vh;
-  line-height: 1.6;
+main{
+  max-width:860px;
+  margin:24px auto;
+  padding:0 14px;
 }
-
-/* BANNER */
-
-.banner-area {
-  width: 100%;
-  background: var(--navy);
+.intro{
+  background:white;
+  padding:25px;
+  border-radius:16px;
+  text-align:center;
+  margin-bottom:18px;
+  box-shadow:0 5px 20px #12345a12;
 }
-
-.banner {
-  display: block;
-  width: 100%;
-  max-width: 1600px;
-  height: auto;
-  margin: auto;
+h1{font-size:26px;color:#082c60}
+p{line-height:1.7}
+.values{
+  color:#15539a;
+  font-weight:bold;
 }
-
-.banner-fallback {
-  padding: 35px 15px;
-  color: white;
-  text-align: center;
+.frame-container{
+  background:white;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 5px 20px #12345a12;
 }
-
-.banner-fallback[hidden] {
-  display: none;
+iframe{
+  display:block;
+  width:100%;
+  height:1050px;
+  border:0;
+  background:#f3f7fc;
 }
-
-.banner-fallback h1 {
-  font-size: 32px;
-  margin: 0;
+.notice{
+  background:#fff3d5;
+  border-left:4px solid #e4ac00;
+  padding:16px;
+  border-radius:9px;
+  margin:20px 0;
 }
-
-/* MAIN CONTENT */
-
-main {
-  max-width: 850px;
-  margin: 30px auto;
-  padding: 0 16px 35px;
+footer{
+  text-align:center;
+  padding:25px 15px;
+  font-size:13px;
+  color:#52677d;
 }
-
-.card {
-  background: white;
-  border-radius: 20px;
-  padding: 35px 30px;
-  text-align: center;
-  box-shadow: 0 8px 30px rgba(8,44,96,.12);
+@media(max-width:600px){
+  main{margin:12px auto;padding:0 8px}
+  .intro{padding:18px 14px}
+  h1{font-size:21px}
+  iframe{height:1100px}
 }
-
-h2 {
-  font-size: 28px;
-  color: var(--navy);
-  margin-top: 0;
-}
-
-.subtitle {
-  font-size: 17px;
-  margin-bottom: 20px;
-}
-
-/* FEATURES */
-
-.features {
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 12px;
-  margin: 25px 0;
-}
-
-.feature {
-  background: #eef5ff;
-  border-radius: 12px;
-  padding: 18px 8px;
-  font-weight: bold;
-  color: var(--navy);
-}
-
-.feature span {
-  display: block;
-  font-size: 27px;
-  margin-bottom: 5px;
-}
-
-/* SAFETY NOTICE */
-
-.notice {
-  background: #fff5d9;
-  border-left: 5px solid #e6ac00;
-  border-radius: 10px;
-  padding: 18px;
-  margin: 22px 0;
-  text-align: left;
-}
-
-.notice strong {
-  color: var(--navy);
-}
-
-/* BUTTON */
-
-.start-button {
-  display: block;
-  width: 100%;
-  max-width: 430px;
-  margin: 25px auto 12px;
-  padding: 18px 20px;
-  border-radius: 12px;
-  background: var(--navy);
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  transition: background .2s;
-}
-
-.start-button:hover,
-.start-button:focus {
-  background: var(--blue);
-}
-
-.privacy {
-  font-size: 13px;
-  color: #536b83;
-  margin-top: 16px;
-}
-
-.quote {
-  font-style: italic;
-  color: #3b5d80;
-  font-size: 17px;
-  margin-top: 25px;
-}
-
-/* OFFICE INFORMATION */
-
-.office-info {
-  background: #eef5ff;
-  padding: 20px;
-  border-radius: 12px;
-  margin-top: 25px;
-  text-align: left;
-}
-
-.office-info h3 {
-  color: var(--navy);
-  margin-top: 0;
-}
-
-.office-info p {
-  margin-bottom: 12px;
-}
-
-/* FOOTER */
-
-footer {
-  text-align: center;
-  padding: 20px 15px 30px;
-  font-size: 13px;
-  color: #52677e;
-}
-
-/* MOBILE RESPONSIVE */
-
-@media (max-width: 600px) {
-
-  main {
-    margin: 15px auto;
-    padding: 0 12px 25px;
-  }
-
-  .card {
-    padding: 24px 18px;
-    border-radius: 15px;
-  }
-
-  h2 {
-    font-size: 23px;
-  }
-
-  .subtitle {
-    font-size: 15px;
-  }
-
-  .features {
-    grid-template-columns: repeat(2,1fr);
-    gap: 9px;
-  }
-
-  .feature {
-    padding: 14px 8px;
-    font-size: 14px;
-  }
-
-  .feature span {
-    font-size: 23px;
-  }
-
-  .start-button {
-    font-size: 16px;
-    padding: 16px;
-  }
-
-  .banner-fallback h1 {
-    font-size: 25px;
-  }
-
-  .office-info {
-    padding: 16px;
-  }
-}
-
 </style>
 </head>
-
 <body>
 
-<!-- OFFICIAL PROJECT TINIG BANNER -->
-
-<header class="banner-area">
-
-  <img
-    class="banner"
-    src="./Project%20TINIG_%20Tulong%20at%20Gabay.png"
-    alt="Project TINIG - Tulong at Gabay"
-    onerror="
-      this.style.display='none';
-      document.getElementById('bannerFallback').hidden=false;
-    "
-  >
-
-  <div
-    id="bannerFallback"
-    class="banner-fallback"
-    hidden
-  >
-    <h1>PROJECT TINIG</h1>
-    <p>Tulong at Gabay</p>
-    <p>
-      Makinig • Sumuporta • Protektahan • Gabayan
-    </p>
-  </div>
-
+<header>
+<img
+  class="banner"
+  src="./Project%20TINIG_%20Tulong%20at%20Gabay.png"
+  alt="Project TINIG - Tulong at Gabay">
 </header>
-
-<!-- MAIN CONTENT -->
 
 <main>
 
-<div class="card">
-
-<h2>May Handang Makinig sa Iyong Tinig</h2>
-
-<p class="subtitle">
+<section class="intro">
+<h1>May Handang Makinig sa Iyong Tinig</h1>
+<p>
 Maligayang pagdating sa
 <strong>Project TINIG – Tulong at Gabay</strong>
 ng Dasmariñas East Integrated High School.
 </p>
-
 <p>
-Ang Project TINIG ay isang paraan upang
-maibahagi ng mga mag-aaral ang kanilang
-saloobin, karanasan, at mga concern
-sa paaralan.
+Ibahagi ang iyong saloobin at concern.
+May mga taong handang makinig at tumulong.
 </p>
-
-<p>
-Sa pamamagitan ng sistemang ito,
-maaari kang humingi ng tulong at gabay
-mula sa Guidance Office o
-Learner Formation Office (LFO).
+<p class="values">
+Makinig • Sumuporta • Protektahan • Gabayan
 </p>
-
-<!-- FOUR CORE VALUES -->
-
-<div class="features">
-
-<div class="feature">
-<span>💬</span>
-Makinig
-</div>
-
-<div class="feature">
-<span>🤝</span>
-Sumuporta
-</div>
-
-<div class="feature">
-<span>🛡️</span>
-Protektahan
-</div>
-
-<div class="feature">
-<span>🌱</span>
-Gabayan
-</div>
-
-</div>
-
-<!-- SAFETY REMINDER -->
+</section>
 
 <div class="notice">
-
 <strong>Mahalaga ang iyong kaligtasan.</strong>
-
 <p>
-Kung ikaw ay nakararanas ng pananakot,
-pananakit, bullying, o anumang panganib,
-may mga taong handang makinig at tumulong.
+Kung may agarang panganib, huwag hintayin
+ang online response. Agad na lumapit sa
+pinakamalapit na guro, Guidance Office,
+Learner Formation Office, School Head,
+o pinagkakatiwalaang nakatatanda.
+Kung kinakailangan, humingi ng tulong
+sa angkop na LGU authorities.
 </p>
-
-<p>
-Kung may agarang panganib,
-huwag hintayin ang online response.
-Agad na lumapit sa pinakamalapit na guro,
-Guidance Office, Learner Formation Office (LFO),
-School Head, o pinagkakatiwalaang nakatatanda.
-</p>
-
-<p>
-Kung kinakailangan, humingi ng agarang tulong
-sa mga awtoridad ng paaralan o sa
-kinauukulang Local Government Unit (LGU)
-authorities.
-</p>
-
 </div>
 
-<!-- GOOGLE APPS SCRIPT FORM BUTTON -->
+<section class="frame-container" aria-label="Student reporting form">
 
-<a
-  class="start-button"
-  href="https://script.google.com/macros/s/AKfycbxQWJ4QEMUYxYQ3R7rYsMVpi2CKblqoPTTwmmclGFRem7ZybRQjjHyswUWgy2TlLiR8/exec"
->
-  💬 Ibahagi ang Aking Concern
-</a>
+<iframe
+  title="Project TINIG Student Reporting Form"
+  src="https://script.google.com/macros/s/AKfycbxQWJ4QEMUYxYQ3R7rYsMVpi2CKblqoPTTwmmclGFRem7ZybRQjjHyswUWgy2TlLiR8/exec"
+  loading="eager"
+  referrerpolicy="strict-origin-when-cross-origin">
+</iframe>
 
-<p class="privacy">
-Sa pagpindot sa button, bubuksan ang
-Project TINIG Student Reporting Form.
-Basahin ang Data Privacy Notice bago
-magsumite ng impormasyon.
+</section>
+
+<p style="text-align:center;font-size:13px">
+Ang online form ay para sa reporting at
+hindi kapalit ng agarang personal na tulong.
 </p>
-
-<p class="quote">
-"Ang iyong tinig ay mahalaga.
-Hindi mo kailangang harapin
-ang lahat nang mag-isa."
-</p>
-
-<!-- GUIDANCE AND LFO INFORMATION -->
-
-<div class="office-info">
-
-<h3>Mga Tanggapang Handang Tumulong</h3>
-
-<p>
-<strong>Guidance Office</strong><br>
-Para sa personal, emosyonal,
-pampamilya, at pang-akademikong concern.
-</p>
-
-<p>
-<strong>Learner Formation Office (LFO)</strong><br>
-Para sa kaligtasan, bullying,
-pananakit, at iba pang
-learner protection concerns.
-</p>
-
-<p>
-<strong>Oras ng Tanggapan:</strong><br>
-Makipag-ugnayan sa paaralan para sa
-kumpirmadong schedule ng Guidance
-at LFO personnel.
-</p>
-
-<p>
-<strong>Paalala:</strong><br>
-Ang online reporting ay hindi kapalit
-ng agarang personal na paghingi ng tulong
-kung may banta sa kaligtasan.
-</p>
-
-</div>
-
-</div>
 
 </main>
 
-<!-- FOOTER -->
-
 <footer>
-
-<strong>
-Dasmariñas East Integrated High School
-</strong>
-
-<p>
-City of Dasmariñas, Cavite
-</p>
-
-<p>
-Project TINIG – Tulong at Gabay
-</p>
-
-<p>
-Makinig • Sumuporta • Protektahan • Gabayan
-</p>
-
+<strong>Dasmariñas East Integrated High School</strong>
+<p>City of Dasmariñas, Cavite</p>
+<p>Project TINIG – Tulong at Gabay</p>
 </footer>
 
 </body>
